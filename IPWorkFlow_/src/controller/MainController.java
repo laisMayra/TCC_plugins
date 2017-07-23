@@ -13,7 +13,7 @@ public class MainController{
 	protected MainGui mainGui;
     protected MainModel mainModel;
     private ImageProcessingPanelController frameList[]; 
-    final int TOTAL_PANELS = 1;
+    final int TOTAL_PANELS = 2;
    
       
     public MainController(MainGui mainGui) {
@@ -34,7 +34,7 @@ public class MainController{
 //    	this.frameList[1] = new ScaleController();
 //    	this.frameList[2] = new GrayscaleController();
 //    	this.frameList[3] = new SmoothFilterController();
-//    	this.frameList[4] = new BinarizationController();
+    	this.frameList[1] = new BinarizationController();
 //    	//this.frameList[5] = new EraseNoiseController();
 //    	//this.frameList[6] = new FillHolesController();
 //    	this.frameList[5] = new WatershedController();

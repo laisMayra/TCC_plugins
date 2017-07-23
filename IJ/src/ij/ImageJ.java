@@ -738,6 +738,13 @@ public class ImageJ extends Frame implements ActionListener,
 		if (IJ.debugMode && IJ.getInstance()==null)
 			new JavaProperties().run("");
 		if (noGUI) System.exit(0);
+	
+		//Open image to test -> delete this part later
+	    Opener opener = new Opener();  
+	    ImagePlus imp = opener.openImage("/home/lais/Documentos/TCC/workspace_Fabio_modifiado/images/image.png");  
+	    imp.show();
+	    IJ.run("IPWorkFlow ", "");
+	    //************************************************
 	}
 		
 	// Is there another instance of ImageJ? If so, send it the arguments and quit.
