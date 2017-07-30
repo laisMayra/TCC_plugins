@@ -5,7 +5,7 @@ import ij.ImagePlus;
 import ij.plugin.frame.ThresholdAdjuster;
 import ij.process.ImageProcessor;
 
-public class BinarizationModel{
+public class PartionatedOtsuModel{
 		
 	public void applyBinarization() {
 		
@@ -36,7 +36,7 @@ public class BinarizationModel{
 					String tileTitle = title + " [" + x + "," + y + "]";
 					String t = ""+y+""+x;
 					IJ.run("Duplicate...", "title=" + t);
-					IJ.makeRectangle(offsetX, offsetY, width/2, height/2);
+					IJ.makeRectangle(offsetX, offsetY, width/n, height/n);
 					IJ.run("Crop");
 				}
 			}
@@ -76,32 +76,7 @@ public class BinarizationModel{
 			for(y=2 ; y<n ; y++){
 				IJ.run("Combine...", "stack1=[Combined Stacks] stack2=" + y + " combine");
 			}
-			
-//			IJ.selectWindow(id);
-//			close();
 
-			
-			
-			
-			
-			
-			
-			
-			
-//			ip.setRoi(0, 0, 100, 100);
-//		   	imp.setProcessor(null, ip.resize(100));
-//			t.setProcessor(null, ip.duplicate());
-//			t.show();
-		   	
-//			thresholdAdjuster = new ThresholdAdjuster();
-//			ThresholdAdjuster.setMode("Red");
-//			IJ.setAutoThreshold(imp, "Default");
-//			IJ.run(imp, "Threshold...", "");
-//			ThresholdAdjuster.setMode("B&W");
-//			IJ.setAutoThreshold(t, "Otsu");
-//			//IJ.run(imp, "Convert to Mask", "");
-			
-			
 		}
 		catch (Exception exceptionType) {
 			exceptionType.printStackTrace();
