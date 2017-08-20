@@ -91,10 +91,10 @@ public class MainGui extends JDialog {
 		lblFrame1.setBounds(12, 169, 217, 15);
 		statusPanel.add(lblFrame1);
 		this.labelList[1] = lblFrame1;
-		JLabel lblFrame2 = new JLabel("Frame 2");
-		lblFrame2.setHorizontalAlignment(SwingConstants.CENTER);
-		lblFrame2.setBounds(12, 196, 217, 15);
-		statusPanel.add(lblFrame2);
+//		JLabel lblFrame2 = new JLabel("Frame 2");
+//		lblFrame2.setHorizontalAlignment(SwingConstants.CENTER);
+//		lblFrame2.setBounds(12, 196, 217, 15);
+//		statusPanel.add(lblFrame2);
 //		this.labelList[2] = lblFrame2;
 //		JLabel lblFrame3 = new JLabel("Frame 3");
 //		lblFrame3.setHorizontalAlignment(SwingConstants.CENTER);
