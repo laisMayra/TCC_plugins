@@ -7,7 +7,7 @@ import view.ROISelectionPanel;
 
 public class ROISelectionModel {
 	
-	public void getSelectedROI(ROISelectionPanel panel) {
+	public void getSelectedROI(ROISelectionPanel panel){
 		ImagePlus imp;
 		String x, y, w, h;
 //		ROISelectionPanel roiSelectionPanel;

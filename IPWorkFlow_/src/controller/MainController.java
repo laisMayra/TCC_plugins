@@ -21,7 +21,7 @@ public class MainController{
         this.mainModel = new MainModel();
         this.setupImageProcessingPanels();
         this.updateImageProcessingPanel();
-        this.updateLabelsTexts();
+//        this.updateLabelsTexts();
         this.mainGui.getBtnCancel().addActionListener(new CancelButtonListener(this));
         this.mainGui.getBtnFinish().addActionListener(new CancelButtonListener(this));
         this.mainGui.getBtnBack().addActionListener(new BackButtonListener(this));
@@ -30,7 +30,7 @@ public class MainController{
     
    private void setupImageProcessingPanels() {
     	this.frameList = new ImageProcessingPanelController[TOTAL_PANELS];
-    	this.frameList[0] = new ROISelectionController();
+    	this.frameList[0] = new WelcomeController();
 //    	this.frameList[1] = new ScaleController();
 //    	this.frameList[2] = new GrayscaleController();
 //    	this.frameList[3] = new SmoothFilterController();
@@ -44,19 +44,19 @@ public class MainController{
     	
     }
     
-   protected void updateLabelsTexts() {
-	   int idImageProcessingPanel;
-	   for (idImageProcessingPanel = 0; idImageProcessingPanel < TOTAL_PANELS; idImageProcessingPanel++) {
-		   mainGui.getLabelList()[idImageProcessingPanel].setText(this.frameList[idImageProcessingPanel].getPanelView().getPanelTitle());
-		   if (idImageProcessingPanel == mainModel.getIdActualFrame()) {
-			   mainGui.getLabelList()[idImageProcessingPanel].setForeground(Color.red);
-		   }
-		   else {
-			   mainGui.getLabelList()[idImageProcessingPanel].setForeground(Color.black);
-		   }
-	   }
-   }
-    
+//   protected void updateLabelsTexts() {
+//	   int idImageProcessingPanel;
+//	   for (idImageProcessingPanel = 0; idImageProcessingPanel < TOTAL_PANELS; idImageProcessingPanel++) {
+//		   mainGui.getLabelList()[idImageProcessingPanel].setText(this.frameList[idImageProcessingPanel].getPanelView().getPanelTitle());
+//		   if (idImageProcessingPanel == mainModel.getIdActualFrame()) {
+//			   mainGui.getLabelList()[idImageProcessingPanel].setForeground(Color.red);
+//		   }
+//		   else {
+//			   mainGui.getLabelList()[idImageProcessingPanel].setForeground(Color.black);
+//		   }
+//	   }
+//   }
+//    
    protected void updateImageProcessingPanel() {
 	   mainGui.setImagePocessingPanel(this.frameList[mainModel.getIdActualFrame()].getPanelView());
    }
@@ -93,7 +93,7 @@ class BackButtonListener implements ActionListener{
 	 public void actionPerformed(ActionEvent e) {
   		this.mainController.mainModel.gotoBackFrame();
  		this.mainController.updateImageProcessingPanel();
- 		this.mainController.updateLabelsTexts();
+// 		this.mainController.updateLabelsTexts();
 		if (!this.mainController.isFinalPanel()) {
 			this.mainController.mainGui.getBtnNext().setVisible(true);
 			this.mainController.mainGui.getBtnFinish().setVisible(false);
@@ -113,7 +113,7 @@ class NextButtonListener implements ActionListener{
 	 public void actionPerformed(ActionEvent e) {
 		this.mainController.mainModel.gotoNextFrame(mainController.TOTAL_PANELS);
  		this.mainController.updateImageProcessingPanel();
- 		this.mainController.updateLabelsTexts();
+// 		this.mainController.updateLabelsTexts();
 		if (this.mainController.isFinalPanel()) {
 			this.mainController.mainGui.getBtnNext().setVisible(false);
 			this.mainController.mainGui.getBtnFinish().setVisible(true);

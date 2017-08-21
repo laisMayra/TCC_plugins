@@ -9,13 +9,14 @@ import view.PartionatedOtsuPanel;
 
 public class PartionatedOtsuController extends ImageProcessingPanelController{
     protected PartionatedOtsuPanel partionatedOtsuPanel;
-    protected PartionatedOtsuModel partionatedOtsuPanelModel;
+    protected PartionatedOtsuModel partionatedOtsuModel;
     
     @Override
     public void panelController() {
     	this.partionatedOtsuPanel = new PartionatedOtsuPanel();
-        this.partionatedOtsuPanelModel = new PartionatedOtsuModel();
-        this.partionatedOtsuPanel.getBtnBinarization().addActionListener(new PartionatedOtsuButtonListener(this.partionatedOtsuPanelModel));
+        this.partionatedOtsuModel = new PartionatedOtsuModel();
+        this.partionatedOtsuPanel.getBtnBinarization().addActionListener(new PartionatedOtsuButtonBinarizationListener(this.partionatedOtsuModel));
+        this.partionatedOtsuPanel.getBtnROISelection().addActionListener(new PartionatedOtsuButtonROISelectionListener(this.partionatedOtsuModel, this.partionatedOtsuPanel));
     }
     
     public ImageProcessingPanel getPanelView() {
@@ -23,15 +24,30 @@ public class PartionatedOtsuController extends ImageProcessingPanelController{
 	}
 }
 
-class PartionatedOtsuButtonListener implements ActionListener{
-	protected PartionatedOtsuModel partionatedOtsuPanelModel;	
+class PartionatedOtsuButtonBinarizationListener implements ActionListener{
+	protected PartionatedOtsuModel partionatedOtsuModel;
 	
-	public PartionatedOtsuButtonListener(PartionatedOtsuModel partionatedOtsuPanelModel) {
-		this.partionatedOtsuPanelModel = partionatedOtsuPanelModel;
+	public PartionatedOtsuButtonBinarizationListener(PartionatedOtsuModel partionatedOtsuModel){
+		this.partionatedOtsuModel = partionatedOtsuModel;
+	}
+	
+	@Override
+	public void actionPerformed(ActionEvent e) {
+		this.partionatedOtsuModel.applyBinarization();
+	}
+}
+
+class PartionatedOtsuButtonROISelectionListener implements ActionListener{
+	protected PartionatedOtsuModel partionatedOtsuModel;
+	protected PartionatedOtsuPanel partionatedOtsuPanel;
+	
+	public PartionatedOtsuButtonROISelectionListener(PartionatedOtsuModel partionatedOtsuModel, PartionatedOtsuPanel partionatedOtsuPanel){
+		this.partionatedOtsuModel = partionatedOtsuModel;
+		this.partionatedOtsuPanel = partionatedOtsuPanel;
 	}
 	
 	 @Override
 	 public void actionPerformed(ActionEvent e) {
-  		this.partionatedOtsuPanelModel.applyBinarization();
-	 }
+  		this.partionatedOtsuModel.getSelectedROI(partionatedOtsuPanel);
+	 } 
 }

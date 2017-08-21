@@ -18,7 +18,10 @@ public abstract class ImageProcessingPanel extends JPanel {
 		
 	public void setupPanel() {	
 		setBorder(new EtchedBorder(EtchedBorder.LOWERED, null, null));
-		setBounds(265, 12, 418, 419);
+//		statusPanel.setBounds(12, 12, 241, 419);
+//		setBounds(12, 12, 418, 419);
+		setBounds(12, 12, 458, 419);
+
 		setLayout(null);
 		this.lblPanelTitle = new JLabel();
 		this.lblPanelTitle.setHorizontalAlignment(SwingConstants.CENTER);
@@ -27,7 +30,7 @@ public abstract class ImageProcessingPanel extends JPanel {
 		add(this.lblPanelTitle);
 		this.txtPanelDescription = new JTextPane();
 		this.txtPanelDescription.setEditable(false);
-		this.txtPanelDescription.setBounds(12, 53, 394, 306);
+		this.txtPanelDescription.setBounds(12, 53, 435, 256);
 		add(this.txtPanelDescription);
 	}
 	

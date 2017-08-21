@@ -2,23 +2,51 @@ package model;
 
 import ij.IJ;
 import ij.ImagePlus;
+import ij.gui.Roi;
 import ij.plugin.frame.ThresholdAdjuster;
-import ij.process.ImageProcessor;
+import view.PartionatedOtsuPanel;
 
 public class PartionatedOtsuModel{
+	ImagePlus imp;
+	String roiWidth, roiHeigth;
+	
+	public void getSelectedROI(PartionatedOtsuPanel panel){
+		//Width and Height selection
+		imp = IJ.getImage();
+		Roi roi = imp.getRoi();
+		roiHeigth = String.valueOf(roi.getFloatHeight());
+		roiWidth = String.valueOf(roi.getFloatWidth());
+//		System.out.println(String.valueOf(roi.getFloatHeight()));
+//		System.out.println(String.valueOf(roi.getFloatWidth()));
+		IJ.setTool(0);
+//		new WaitForUserDialog("Do something, then click OK.").show();
+		
+		panel.setWidthSelected(String.valueOf(roi.getFloatWidth()));
+		panel.setHeigthSelected(String.valueOf(roi.getFloatHeight()));
+	}
 		
 	public void applyBinarization() {
 		
-		ImagePlus imp, imp2, combined_stack;
-		int width, height, n=5;
+		ImagePlus imp2, combined_stack;
+		int width, height, h=2, w=3;
+		
+		
 
 		ThresholdAdjuster thresholdAdjuster;
 		try{
-			
-			
 			imp = IJ.getImage();
+			
+			float impW;
+			impW = Float.valueOf(roiWidth);
+			w = Math.round(imp.getWidth()/impW);
+			
+			float impH;
+			impH = Float.valueOf(roiHeigth);
+			h = Math.round(imp.getHeight()/impH);
+			
 			IJ.run(imp, "8-bit", "");
 			
+			//Binarization			
 			imp2 = imp.duplicate();
 			imp2.show();
 			int id = imp2.getID();
@@ -28,23 +56,23 @@ public class PartionatedOtsuModel{
 			width = imp2.getWidth();
 			height = imp2.getHeight();
 
-			for (y = 0; y < n; y++) {
-				float offsetY = y * height / n;
-			 	for (x = 0; x < n; x++) {
-					float offsetX = x * width / n;
+			for (y = 0; y < h; y++) {
+				float offsetY = y * height / h;
+			 	for (x = 0; x < w; x++) {
+					float offsetX = x * width / w;
 					IJ.selectWindow(id);
 					String tileTitle = title + " [" + x + "," + y + "]";
 					String t = ""+y+""+x;
 					IJ.run("Duplicate...", "title=" + t);
-					IJ.makeRectangle(offsetX, offsetY, width/n, height/n);
+					IJ.makeRectangle(offsetX, offsetY, width/w, height/h);
 					IJ.run("Crop");
 				}
 			}
 			
 			//Otsu
 			thresholdAdjuster = new ThresholdAdjuster();
-			for (y = 0; y < n; y++) {
-				for (x = 0; x < n; x++) {
+			for (y = 0; y < h; y++) {
+				for (x = 0; x < w; x++) {
 					String t = ""+y+""+x;
 					IJ.selectWindow(t);
 					IJ.setAutoThreshold(IJ.getImage(),  "Otsu");
@@ -57,11 +85,11 @@ public class PartionatedOtsuModel{
 			//Join imagens
 			//n == number of division per line and number of lines
 			//Lines
-			for(y=0 ; y<n ; y++){
+			for(y=0 ; y<h ; y++){
 				String stack_one_name = "stack1=" + y + "0 stack2=" + y + "1";
 				IJ.run("Combine...", stack_one_name);
 				//Rolls
-				for(x=2 ; x<n ; x++){
+				for(x=2 ; x<w ; x++){
 					String stack_name = "stack1=[Combined Stacks] stack2="+y+""+x;
 					IJ.run("Combine...", stack_name);
 					
@@ -73,7 +101,7 @@ public class PartionatedOtsuModel{
 			
 			//Combinations
 			IJ.run("Combine...", "stack1=0 stack2=1 combine");
-			for(y=2 ; y<n ; y++){
+			for(y=2 ; y<h ; y++){
 				IJ.run("Combine...", "stack1=[Combined Stacks] stack2=" + y + " combine");
 			}
 

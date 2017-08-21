@@ -67,31 +67,31 @@ public class MainGui extends JDialog {
 	
 	public MainGui() {
 		setTitle("Partitioned Otsu");
-		setBounds(100, 100, 700, 506);
+		setBounds(100, 100, 480, 506);
 		getContentPane().setLayout(new BorderLayout());
 		mainPanel.setBorder(new EtchedBorder(EtchedBorder.LOWERED, null, null));
 		getContentPane().add(mainPanel, BorderLayout.CENTER);
 		mainPanel.setLayout(null);
 		
-		JPanel statusPanel = new JPanel();
-		statusPanel.setBorder(new EtchedBorder(EtchedBorder.LOWERED, null, null));
-		statusPanel.setBounds(12, 12, 241, 419);
-		mainPanel.add(statusPanel);
-		statusPanel.setLayout(null);
+//		JPanel statusPanel = new JPanel();
+//		statusPanel.setBorder(new EtchedBorder(EtchedBorder.LOWERED, null, null));
+//		statusPanel.setBounds(12, 12, 241, 419);
+//		mainPanel.add(statusPanel);
+//		statusPanel.setLayout(null);
 
-		this.labelList = new JLabel[7];
-		
-		JLabel lblFrame0 = new JLabel("Frame 0");
-		lblFrame0.setHorizontalAlignment(SwingConstants.CENTER);
-		lblFrame0.setBounds(12, 142, 217, 15);
-		statusPanel.add(lblFrame0);
-		this.labelList[0] = lblFrame0;
-		JLabel lblFrame1 = new JLabel("Frame 1");
-		lblFrame1.setHorizontalAlignment(SwingConstants.CENTER);
-		lblFrame1.setBounds(12, 169, 217, 15);
-		statusPanel.add(lblFrame1);
-		this.labelList[1] = lblFrame1;
-//		JLabel lblFrame2 = new JLabel("Frame 2");
+//		this.labelList = new JLabel[7];
+//		
+//		JLabel lblFrame0 = new JLabel("Frame 0");
+//		lblFrame0.setHorizontalAlignment(SwingConstants.CENTER);
+//		lblFrame0.setBounds(12, 142, 217, 15);
+//		statusPanel.add(lblFrame0);
+//		this.labelList[0] = lblFrame0;
+//		JLabel lblFrame1 = new JLabel("Frame 1");
+//		lblFrame1.setHorizontalAlignment(SwingConstants.CENTER);
+//		lblFrame1.setBounds(12, 169, 217, 15);
+//		statusPanel.add(lblFrame1);
+//		this.labelList[1] = lblFrame1;
+////		JLabel lblFrame2 = new JLabel("Frame 2");
 //		lblFrame2.setHorizontalAlignment(SwingConstants.CENTER);
 //		lblFrame2.setBounds(12, 196, 217, 15);
 //		statusPanel.add(lblFrame2);
