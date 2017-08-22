@@ -28,13 +28,14 @@ public class PartionatedOtsuModel{
 	public void applyBinarization() {
 		
 		ImagePlus imp2, combined_stack;
-		int width, height, h=2, w=3;
+		int width, height, h, w;
 		
 		
 
 		ThresholdAdjuster thresholdAdjuster;
 		try{
 			imp = IJ.getImage();
+			Roi roi = imp.getRoi();
 			
 			float impW;
 			impW = Float.valueOf(roiWidth);
@@ -44,6 +45,10 @@ public class PartionatedOtsuModel{
 			impH = Float.valueOf(roiHeigth);
 			h = Math.round(imp.getHeight()/impH);
 			
+			System.out.println(String.valueOf(w));
+			System.out.println(String.valueOf(h));
+			
+			imp.deleteRoi();
 			IJ.run(imp, "8-bit", "");
 			
 			//Binarization			
